@@ -2,7 +2,7 @@
 
 var wins = 0;
 var losses = 0;
-var guessesleft = 0;
+var guessesleft = 9;
 var guessedletters;
 
 
@@ -11,7 +11,7 @@ var computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","
 var instructions = document.getElementById("instructions-text");
 var winstally = document.getElementById("wins-tally");
 var lossestally = document.getElementById("losses-tally");
-var guesseslefttext = document.getElementById("guesses-left");
+var guesseslefttext = document.getElementById("guesses-tally");
 var guessedletterstext = document.getElementById("guessed-letters");
 
 document.onkeyup = function(event){
@@ -40,7 +40,10 @@ console.log("Losses: " + losses);
     console.log("Wins: " + wins);
     console.log("Losses: " + losses);   
 
-
+    winstally.textContent = "Wins: " + wins;
+    lossestally.textContent = "Losses: " + losses;
+    guesseslefttext.textContent = "Guesses Left: " + guessesleft;
+    guessedletterstext.textContent = "Guessed Letters: " + userGuess;
     
   
         }
