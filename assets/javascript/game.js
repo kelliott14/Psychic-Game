@@ -19,13 +19,17 @@ var guessedletterstext = document.getElementById("guessed-letters");
   
 
 //Creating the Computer guess, taken from var of the alphabet.
-    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    console.log("Computer Guess " + computerGuess)
-    
+    function compGuess(computerGuess){
+        console.log("Computer Guess " + computerGuess)
+        
+    }
+
+    compGuess(computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)])
+
+
 //Function for each keypress
 document.onkeyup = function(event){
 
-    do{
 
         var userGuess = event.key;
         guessedletters.push(userGuess);
@@ -34,20 +38,13 @@ document.onkeyup = function(event){
         wins++; 
 
 
-        } else if (guessesleft !== 0){
+        } else if (guessesleft > 0){
         guessesleft--;
         
         } else {
         losses++;
             
         }
-
- }
-
-    while (guessesleft < 0);
-         
-   
-
 
     //Scorecard
         winstally.textContent = "Wins: " + wins;
@@ -58,3 +55,4 @@ document.onkeyup = function(event){
   
        
 }
+
