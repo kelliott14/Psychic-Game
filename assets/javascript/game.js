@@ -14,43 +14,45 @@ var lossestally = document.getElementById("losses-tally");
 var guesseslefttext = document.getElementById("guesses-tally");
 var guessedletterstext = document.getElementById("guessed-letters");
 
+var computerGuess = computerChoices
 
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]
+
   
 
 //Creating the Computer guess, taken from var of the alphabet.
     function updateCompGuess(){
-        computerChoices[Math.floor(Math.random() * computerChoices.length)]
+        computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]
         console.log("Computer Guess " + computerGuess)
     }
 
     updateCompGuess()
 
-    //put the reset game list here. Guesses = 0; Computer choice run again.
+    //Resets game but not scorecard
     function resetGame(){
         guessesleft = 9;
+        guessedletters = [];
         updateCompGuess();
     }
 
 //Function for each keypress
 document.onkeyup = function(event){
 
-
         var userGuess = event.key;
         guessedletters.push(userGuess);
 
             if (userGuess === computerGuess) {
-        wins++; 
-        guessesleft = 0;
-
-
-        } else if (guessesleft > 0){
-        guessesleft--;
+            wins++; 
+            guessesleft = 0;
+            resetGame()
         
-        } else {
-        losses++;
+            } else if (guessesleft > 0){
+            guessesleft--;
             
-        }
+            } else {
+            losses++;
+            resetGame();
+                
+            }
 
     //Scorecard
         winstally.textContent = "Wins: " + wins;
@@ -58,9 +60,6 @@ document.onkeyup = function(event){
         guesseslefttext.textContent = "Guesses Left: " + guessesleft;
         guessedletterstext.textContent = "Guessed So Far: " + guessedletters;
         
-    //reset game function
-        if(guessesleft === 0){
-            resetGame();
+
         }
        
-}
