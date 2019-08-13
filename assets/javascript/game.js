@@ -22,19 +22,24 @@ var guessedletterstext = document.getElementById("guessed-letters");
     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
     console.log("Computer Guess " + computerGuess)
     
+//Function for each keypress
 document.onkeyup = function(event){
 
     do{
 
         var userGuess = event.key;
         guessedletters.push(userGuess);
-          
+
             if (userGuess === computerGuess) {
-        wins++;
+        wins++; 
 
 
-        } else  {
+        } else if (guessesleft !== 0){
         guessesleft--;
+        
+        } else {
+        losses++;
+            
         }
 
  }
@@ -44,12 +49,12 @@ document.onkeyup = function(event){
    
 
 
-//Scorecard
-    winstally.textContent = "Wins: " + wins;
-    lossestally.textContent = "Losses: " + losses;
-    guesseslefttext.textContent = "Guesses Left: " + guessesleft;
-    guessedletterstext.textContent = "Guessed Letters: " + guessedletters;
-    
+    //Scorecard
+        winstally.textContent = "Wins: " + wins;
+        lossestally.textContent = "Losses: " + losses;
+        guesseslefttext.textContent = "Guesses Left: " + guessesleft;
+        guessedletterstext.textContent = "Guessed Letters: " + guessedletters;
+        
   
        
 }
