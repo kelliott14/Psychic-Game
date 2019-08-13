@@ -15,17 +15,22 @@ var guesseslefttext = document.getElementById("guesses-tally");
 var guessedletterstext = document.getElementById("guessed-letters");
 
 
-
+var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]
   
 
 //Creating the Computer guess, taken from var of the alphabet.
-    function compGuess(computerGuess){
+    function updateCompGuess(){
+        computerChoices[Math.floor(Math.random() * computerChoices.length)]
         console.log("Computer Guess " + computerGuess)
-        
     }
 
-    compGuess(computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)])
+    updateCompGuess()
 
+    //put the reset game list here. Guesses = 0; Computer choice run again.
+    function resetGame(){
+        guessesleft = 9;
+        updateCompGuess();
+    }
 
 //Function for each keypress
 document.onkeyup = function(event){
@@ -36,6 +41,7 @@ document.onkeyup = function(event){
 
             if (userGuess === computerGuess) {
         wins++; 
+        guessesleft = 0;
 
 
         } else if (guessesleft > 0){
@@ -50,9 +56,11 @@ document.onkeyup = function(event){
         winstally.textContent = "Wins: " + wins;
         lossestally.textContent = "Losses: " + losses;
         guesseslefttext.textContent = "Guesses Left: " + guessesleft;
-        guessedletterstext.textContent = "Guessed Letters: " + guessedletters;
+        guessedletterstext.textContent = "Guessed So Far: " + guessedletters;
         
-  
+    //reset game function
+        if(guessesleft === 0){
+            resetGame();
+        }
        
 }
-
